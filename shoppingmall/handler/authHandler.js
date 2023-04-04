@@ -16,11 +16,15 @@ const join = (req, res)=>{
 }
 
 const joinProcess = (req, res) => {
-  console.log("회원가입하는 과정");
+  console.log("아이디 중복체크");
+  console.log("데이터베이스에 회원 정보입력");
   res.redirect('/auth/login');
 }
 
-const logout = (req, res)=>{ res.send('로그아웃'); }
+const logout = (req, res)=>{ 
+  req.session.destroy();
+  res.redirect('/');
+}
 
 const withdrawal = (req, res)=>{ res.send('회원탈퇴'); }
 
