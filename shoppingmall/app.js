@@ -1,5 +1,6 @@
 const express = require('express');
 const session = require('express-session');
+const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
 const myPageRouter = require('./routes/myPage');
 const productsRouter = require('./routes/products');
@@ -10,10 +11,7 @@ app.use(session(sessionConfig));
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
-app.get('/', (req, res)=>{ 
-  console.log(req.session);
-  res.send('홈');
-});
+app.get('/', indexRouter);
 app.use('/auth', authRouter);
 app.use('/myPage', myPageRouter);
 app.use('/products', productsRouter);
