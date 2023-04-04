@@ -9,9 +9,7 @@ const tableHTML = (items) => {
     template +='</tr></thead><tbody>';
     for(item of items){
       template += '<tr>'
-      keys.forEach(key =>{
-        template += `<td>${item[key]}</td>`;
-      });
+      keys.forEach(key =>{template += `<td>${item[key]}</td>`});
       template +='</tr>'
     }
     template += '</tbody></table>';
