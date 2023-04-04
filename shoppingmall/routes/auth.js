@@ -1,10 +1,13 @@
 const express = require('express');
 const router = express.Router();
+const authHandler = require('../handler/authHandler');
 
 router.get('/', (req, res)=>{ res.send('사용자인증 도메인')});
-router.get('/login', (req, res)=>{ res.send('로그인')});
-router.get('/logout', (req, res)=>{ res.send('로그아웃')});
-router.get('/join', (req, res)=>{ res.send('회원가입')});
-router.get('/withdrawal', (req, res)=>{ res.send('회원탈퇴')});
+router.get('/login', authHandler.login);
+router.post('/loginProcess', authHandler.loginProcess);
+router.get('/logout', authHandler.logout);
+router.get('/join', authHandler.join);
+router.post('/joinProcess', authHandler.joinProcess);
+router.get('/withdrawal', authHandler.withdrawal);
 
 module.exports = router;
