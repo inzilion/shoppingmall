@@ -11,13 +11,13 @@ const loginProcess = (req, res)=>{
   res.redirect('/');
 }
 
+const join = (req, res)=>{ 
+  res.sendFile(path.join(__dirname, '../public/join.html'));
+}
+
 const joinProcess = (req, res) => {
   console.log("회원가입하는 과정");
   res.redirect('/auth/login');
-}
-
-const join = (req, res)=>{ 
-  res.sendFile(path.join(__dirname, '../public/join.html'));
 }
 
 const logout = (req, res)=>{ res.send('로그아웃'); }
