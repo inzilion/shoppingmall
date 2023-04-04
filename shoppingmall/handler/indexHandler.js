@@ -1,14 +1,14 @@
-const header = require('../views/header')
-const body = require('../views/body')
-const footer = require('../views/footer')
+const header = require('../views/headers')
+const body = require('../views/bodys')
+const footer = require('../views/footers')
 
 const index = (req, res)=>{
   let userID = undefined;
   if(req.session.user != undefined)
     userID = req.session.user.id;
-  res.send(header.indexHeader(userID) 
-          + body.indexBody()
-          + footer.indexFooter());
+  res.send(header.indexHeaderHTML(userID)
+          + body.indexBodyHTML([{name:"kim", age:'23'}])
+          + footer.indexFooterHTML());
 }
 
 module.exports =  {
