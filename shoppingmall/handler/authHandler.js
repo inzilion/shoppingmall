@@ -1,3 +1,6 @@
+const mysql = require('mysql2');
+const mysqlConfig = require('../config/mysql');
+const pool = mysql.createPool(mysqlConfig);
 const path = require('path');
 
 const login = (req, res)=>{ 
@@ -5,10 +8,15 @@ const login = (req, res)=>{
 }
 
 const loginProcess = (req, res)=>{
-  console.log(`${req.body.userID} : ${req.body.userPW}`);
-  console.log('데이터베이스에서 검증을 구현이 생략');
-  req.session.user = {id : req.body.userID, pw : req.body.userPW};
-  res.redirect('/');
+  let sql = `SELECT id, pw, name from customers where id=? and pw=?`
+  let values = [req.body.userID, req.body.userPW];
+  pool.query(sql, values, (err, rows, field)=>{
+    if(err) throw err;
+    if(rows.length !== 0)
+      req.session.user = {id : req.body.userID, name : rows[0].name};
+    console.log(req.session.user);
+    res.redirect('/');
+  })
 }
 
 const join = (req, res)=>{ 
