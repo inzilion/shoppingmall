@@ -1,1 +1,0 @@
-insert into customers (id, name, pw) values ('admin', '운영자', '1234');

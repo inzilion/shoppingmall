@@ -1,5 +1,5 @@
-const indexFooterHTML = () =>{
-  let template = `<h4>경기도 부천시 신상로 94 (상동, 부천정보산업고등학교)</h4>`
+const indexFooterHTML = () => {
+  let template = `<h5>(주) 다 팔아다있으</h5>`
   return template;
 }
 

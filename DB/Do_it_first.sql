@@ -15,4 +15,5 @@ CREATE TABLE customers (
 INSERT INTO customers (id, name, pw) VALUES ('tester', '테스터훈', '1234');
 
 CREATE USER 'shoppingmall'@'%' IDENTIFIED BY '1234';
+
 GRANT ALL PRIVILEGES ON shoppingmall.* TO 'shoppingmall'@'%';

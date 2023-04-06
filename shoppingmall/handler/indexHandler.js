@@ -1,12 +1,12 @@
 const header = require('../views/headers')
-const body = require('../views/bodys')
+const body = require('../views/middles')
 const footer = require('../views/footers')
 
 const index = (req, res)=>{
-  let userID = undefined;
+  let userName = undefined;
   if(req.session.user != undefined)
-    userID = req.session.user.id;
-  res.send(header.indexHeaderHTML(userID) +
+    userName = req.session.user.name;
+  res.send(header.indexHeaderHTML(userName) +
           body.indexBodyHTML() +
           footer.indexFooterHTML());
 }

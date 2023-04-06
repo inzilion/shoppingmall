@@ -9,9 +9,15 @@
 <body>
   <h2>Login</h2>
   <form method="post" action="/auth/loginProcess">
-    <label>ID : </label><input type="text" name="userID" required=""><br>
-    <label>PW : </label><input type="password" name="userPW" required=""><br>
-    <input type="submit" value="Login">
+    <div style="display:flex; flex-direction: column; padding: 5px;">
+      <div style="display:flex; flex-direction: row; padding:1px;">
+        <div style="width:40px;">ID : </div>
+        <div><input type="text" name="userID" required=""></div></div>
+      <div style="display:flex; flex-direction: row; padding:1px;">
+        <div style="width:40px;">PW : </div>
+        <div><input type="password" name="userPW" required=""></div></div>
+    </div>
+    <input style="padding: 3px; margin:5px;" type="submit" value="Login">
     <a href="/auth/join">Join us</a>
   </form>
 </body>

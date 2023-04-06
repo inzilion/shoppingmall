@@ -3,9 +3,7 @@ const mysqlConfig = require('../config/mysql');
 const pool = mysql.createPool(mysqlConfig);
 const path = require('path');
 
-const login = (req, res)=>{ 
-  res.sendFile(path.join(__dirname, '../public/login.html'))
-}
+const login = (req, res) => res.sendFile(path.join(__dirname, '../public/login.html'));
 
 const loginProcess = (req, res)=>{
   let sql = `SELECT id, pw, name from customers where id=? and pw=?`
@@ -19,9 +17,7 @@ const loginProcess = (req, res)=>{
   })
 }
 
-const join = (req, res)=>{ 
-  res.sendFile(path.join(__dirname, '../public/join.html'));
-}
+const join = (req, res) => res.sendFile(path.join(__dirname, '../public/join.html'));
 
 const joinProcess = (req, res) => {
   console.log("아이디 중복체크");
