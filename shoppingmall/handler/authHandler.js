@@ -3,7 +3,17 @@ const mysqlConfig = require('../config/mysql');
 const pool = mysql.createPool(mysqlConfig);
 const path = require('path');
 
-const login = (req, res) => res.sendFile(path.join(__dirname, '../public/login.html'));
+const getDate = (d) => `${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`;
+const getTime = (d) => `${d.getHours()}-${d.getMinutes()}-${d.getSeconds()}`;
+const getDateTime = (d) => getDate(d) + ' ' + getTime(d);
+
+
+const login = (req, res) => {
+  if(req.session.user === undefined)
+    res.sendFile(path.join(__dirname, '../public/login.html'));
+  else
+    res.redirect(`/myPage/${req.session.user.id}`);
+}
 
 const loginProcess = (req, res)=>{
   let sql = `SELECT id, pw, name from customers where id=? and pw=?`
@@ -27,8 +37,10 @@ const joinProcess = (req, res) => {
   pool.query(sql, (err, rows, field)=>{
     if(err) throw err;
     if(rows.length == 0){
-      let sql = 'INSERT INTO customers (id, name, pw) VALUES(?, ?, ?)';
-      let values = [req.body.userID, req.body.userName, req.body.userPW];
+      let sql = 'INSERT INTO customers (id, name, pw, joinDate, lastLogin, grade, loginFailCnt, accountSuspension) ';
+          sql += 'VALUES(?, ?, ?, ?, ?, ?, ?, ?)';
+      let values = [req.body.userID, req.body.userName, req.body.userPW,
+                    getDateTime(new Date()), getDateTime(new Date()), '돌', 0, 0];
       pool.query(sql, values, (err, rows, field)=>{
         if(err) throw err;
         let template = `<h4>${req.body.userName}님이 등록되었습니다.</h4>`;

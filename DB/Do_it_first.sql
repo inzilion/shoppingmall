@@ -6,15 +6,21 @@ USE shoppingmall;
 
 CREATE TABLE customers (
   idcustomers INT NOT NULL AUTO_INCREMENT,
-  id          VARCHAR(20) NOT NULL,
-  name        VARCHAR(30) NOT NULL,
-  phone       VARCHAR(13),
-  email       VARCHAR(40),
-  pw          VARCHAR(30) NOT NULL,
-  address     VARCHAR(50),
+  id                  VARCHAR(20) NOT NULL,
+  name                VARCHAR(30) NOT NULL,
+  phone               VARCHAR(13),
+  email               VARCHAR(40),
+  pw                  VARCHAR(30) NOT NULL,
+  address             VARCHAR(50),
+  joinDate            TIMESTAMP NOT NULL,
+  lastLogin           TIMESTAMP NOT NULL,
+  grade               VARCHAR(10) NOT NULL,
+  loginFailCnt        INT NOT NULL,
+  accountSuspension   BOOLEAN NOT NULL,
   PRIMARY KEY(idcustomers));
 
-INSERT INTO customers (id, name, pw) VALUES ('tester', '테스터훈', '1234');
+INSERT INTO customers (id, name, pw, joinDate, lastLogin, grade, loginFailCnt, accountSuspension) 
+      VALUES ('tester', '테스터훈', '1234', '2005-07-01 14:44:44', '2023-04-05 14:44:44', '돌', 0, 0);
 
 CREATE USER 'shoppingmall'@'%' IDENTIFIED BY '1234';
 
