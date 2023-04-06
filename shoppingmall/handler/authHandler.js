@@ -10,19 +10,35 @@ const loginProcess = (req, res)=>{
   let values = [req.body.userID, req.body.userPW];
   pool.query(sql, values, (err, rows, field)=>{
     if(err) throw err;
-    if(rows.length !== 0)
+    if(rows.length !== 0){
       req.session.user = {id : req.body.userID, name : rows[0].name};
-    console.log(req.session.user);
-    res.redirect('/');
+      console.log(req.session.user);
+      res.redirect('/');
+    }
+    else
+      res.redirect('/errors/login');
   })
 }
 
 const join = (req, res) => res.sendFile(path.join(__dirname, '../public/join.html'));
 
 const joinProcess = (req, res) => {
-  console.log("아이디 중복체크");
-  console.log("데이터베이스에 회원 정보입력");
-  res.redirect('/auth/login');
+  let sql = `SELECT id FROM customers WHERE id='${req.body.userID}'`;
+  pool.query(sql, (err, rows, field)=>{
+    if(err) throw err;
+    if(rows.length == 0){
+      let sql = 'INSERT INTO customers (id, name, pw) VALUES(?, ?, ?)';
+      let values = [req.body.userID, req.body.userName, req.body.userPW];
+      pool.query(sql, values, (err, rows, field)=>{
+        if(err) throw err;
+        let template = `<h4>${req.body.userName}님이 등록되었습니다.</h4>`;
+        template += '<a href="/auth/login">Login</a>';
+        res.send(template);
+      })
+    }
+    else
+      res.redirect('/errors/join');
+  })
 }
 
 const logout = (req, res)=>{ 

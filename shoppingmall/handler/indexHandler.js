@@ -6,7 +6,7 @@ const index = (req, res)=>{
   let userName = undefined;
   if(req.session.user != undefined)
     userName = req.session.user.name;
-  res.send(header.indexHeaderHTML(userName) +
+  res.send(header.indexHeaderHTML(req.session.user) +
           body.indexBodyHTML() +
           footer.indexFooterHTML());
 }
