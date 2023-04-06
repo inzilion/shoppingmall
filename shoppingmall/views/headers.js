@@ -1,10 +1,10 @@
 const indexHeaderHTML = (user) =>{
-  let template = `<h1>Da Paradise</h1>`
+  let template = `<div style="font-size:30px;display:inline-block;width:300px;"><b>Da Paradise</b></div>`
   if (user == undefined)  
-    template += `<a href="/auth/login">로그인</a>해주세요.`;
+    template += `<div style="display:inline-block;"><a href="/auth/login">Login</a></div>`;
   else                      
-    template += `<a href="/myPage/${user.id}">${user.name}</a>님 반갑고 
-                  <a href="/auth/logout">logout</a>`;
+    template += `<div style="display:inline-block;"><a href="/myPage/${user.id}">${user.name}</a>
+                  <a href="/auth/logout">Logout</a></div>`;
   return template + '<br>';
 }
 
