@@ -1,6 +1,4 @@
-const mysql = require('mysql2');
-const mysqlConfig = require('../config/mysql');
-const pool = mysql.createPool(mysqlConfig);
+const pool = require('./_dbPool');
 const path = require('path');
 
 const getDate = (d) => `${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`;

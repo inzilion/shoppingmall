@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const authHandler = require('../handler/authHandler');
+const authHandler = require('../handlers/authHandler');
 
 router.get('/', (req, res)=>{ res.send('사용자인증 도메인')});
 router.get('/login', authHandler.login);

@@ -1,4 +1,4 @@
-const indexHeaderHTML = (user) =>{
+const indexHTML = (user) =>{
   let template = `<div style="font-size:30px;display:inline-block;width:300px;"><b>Da Paradise</b></div>`
   if (user == undefined)  
     template += `<div style="display:inline-block;"><a href="/auth/login">Login</a></div>`;
@@ -9,5 +9,5 @@ const indexHeaderHTML = (user) =>{
 }
 
 module.exports = {
-  indexHeaderHTML,
+  indexHTML,
 }
