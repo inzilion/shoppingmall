@@ -21,6 +21,7 @@ const loginProcess = (req, res)=>{
     if(rows.length !== 0){
       req.session.user = {id : req.body.userID, name : rows[0].name};
       console.log(req.session.user);
+      //마지막 접속시간 업데이트
       res.redirect('/');
     }
     else
@@ -45,6 +46,7 @@ const joinProcess = (req, res) => {
         template += '<a href="/auth/login">Login</a>';
         res.send(template);
       })
+      // 개인 장바구니 테이블 생성  
     }
     else
       res.redirect('/errors/join');

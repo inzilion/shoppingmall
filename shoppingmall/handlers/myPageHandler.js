@@ -3,6 +3,13 @@ const middleView = require('../views/middles')
 const footerView = require('../views/footers')
 const pool = require('./_dbPool');
 
+const index = (req, res, next) => {
+  if(req.session.user === undefined)
+    res.redirect('/');
+  else
+    next();
+}
+
 const userID = (req, res) => {
   let sql = 'SELECT * FROM customers WHERE id=?';
   let values = [req.session.user.id]
@@ -37,13 +44,11 @@ const userEdit = (req, res) => {
       let footer = footerView.indexHTML();
       res.send(header + middle + footer);
     }
-  })
-  //비번 확인 req.body.userPW
-  //데이터베이스 갱신
-  
+  })  
 }
 
 module.exports = {
+  index,
   userID,
   userEdit,
 }
