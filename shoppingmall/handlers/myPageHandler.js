@@ -4,7 +4,7 @@ const footerView = require('../views/footers')
 const pool = require('./_dbPool');
 
 const userID = (req, res) => {
-  let sql = 'select * from customers where id=?';
+  let sql = 'SELECT * FROM customers WHERE id=?';
   let values = [req.session.user.id]
   pool.query(sql, values, (err, rows, field)=>{
     if (err) throw err;
@@ -16,8 +16,31 @@ const userID = (req, res) => {
 }
 
 const userEdit = (req, res) => {
+  let sql = `SELECT pw FROM customers WHERE id = ?`;
+  let values = [req.session.user.id];
+  pool.query(sql, values, (err, rows, field)=>{
+    if(err) throw err;
+    if(req.body.userPW === rows[0].pw){
+      let sql = `UPDATE customers SET phone=?, email=? WHERE id=?`;
+      let values = [req.body.userPhone, req.body.userEmail, req.session.user.id];
+      pool.query(sql, values, (err, field)=>{
+        if(err) throw err;
+        let header = headerView.indexHTML(req.session.user);
+        let middle = '수정완료';
+        let footer = footerView.indexHTML();
+        res.send(header + middle + footer);
+      })
+    }
+    else{
+      let header = headerView.indexHTML(req.session.user);
+      let middle = '비밀번호가 일치하지 않습니다.';
+      let footer = footerView.indexHTML();
+      res.send(header + middle + footer);
+    }
+  })
   //비번 확인 req.body.userPW
   //데이터베이스 갱신
+  
 }
 
 module.exports = {
