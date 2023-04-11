@@ -31,3 +31,28 @@ INSERT INTO customers (id, name, pw, joinDate, lastLogin, grade, loginFailCnt, a
 CREATE USER 'shoppingmall'@'%' IDENTIFIED BY '1234';
 
 GRANT ALL PRIVILEGES ON shoppingmall.* TO 'shoppingmall'@'%';
+
+CREATE TABLE category (
+  idcategory          INT NOT NULL AUTO_INCREMENT,
+  name                VARCHAR(30) NOT NULL,
+  PRIMARY KEY(idcategory));
+
+INSERT INTO category (name) VALUES ('전자기기');
+INSERT INTO category (name) VALUES ('식품');
+
+CREATE TABLE products (
+  idproducts          INT NOT NULL AUTO_INCREMENT,
+  category            INT NOT NULL,
+  name                VARCHAR(30) NOT NULL,
+  price               INT NOT NULL,
+  registrationDate    TIMESTAMP NOT NULL,
+  img                 VARCHAR(200),
+  seller              VARCHAR(20) NOT NULL,
+  PRIMARY KEY(idproducts));
+
+INSERT INTO products (category, name, price, registrationDate, seller) 
+      VALUES (1, '아이패드 프로' , 1000000, '2023-04-11 00:00:00', 'tester');
+INSERT INTO products (category, name, price, registrationDate, seller) 
+      VALUES (1, '갤럭시텝 플러스' , 570000, '2023-04-11 00:00:00', 'tester');
+INSERT INTO products (category, name, price, registrationDate, seller) 
+      VALUES (2, '양갈비 1Kg' , 40000, '2023-04-11 00:00:00', 'jwj');

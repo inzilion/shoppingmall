@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const productsHandler = require('../handlers/productsHandler.js');
 
 router.get('/', (req, res)=>{ res.send('상품정보 도메인')});
-router.get('/list', (req, res)=>{ res.send('전체상품 리스트')});
+router.get('/list', productsHandler.list);
 router.get('/category/:productClass/list', (req, res)=>{res.send(`카테고리가 ${req.params.productClass} 상품 리스트`)});
 router.get('/event', (req, res)=>{ res.send('행사상품 리스트')});
 router.get('/registration', (req, res)=>{ res.send(`상품등록`)});

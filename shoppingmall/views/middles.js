@@ -1,8 +1,8 @@
 const tpl = require('./templates');
 
 const indexHTML = (products) =>{
-  let template = `<div style ="height:300px; background-color:#00ffE5;">
-                  <h2>New arrival</h2>`
+  let template = `<div style ="height:300px; background-color:#ff9905;">
+                  <h2>전체 상품 목록</h2>`
   template += tpl.tableHTML(products);
   template += '</div>'
   return template;
