@@ -6,7 +6,13 @@ const myPageRouter = require('./routes/myPage');
 const productsRouter = require('./routes/products');
 const errorsRouter = require('./routes/errors');
 const sessionConfig = require('./config/session');
+const nunjucks = require('nunjucks');
 const app = express();
+
+nunjucks.configure('views', {
+  autoescape: true,
+  express: app,
+})
 
 app.use(session(sessionConfig));
 app.use(express.json());

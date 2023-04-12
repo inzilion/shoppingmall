@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Da Paradise</title>
+</head>
+<body>
+{% block top %}
+  <div style="height: 70px;">
+    <div style="font-size:30px;display:inline-block;width:300px;">
+      <b>Da Paradise</b>
+    </div>
+    {% if user %}  
+      <div style="display:inline-block;">
+        <a href="/myPage/${user.id}">{{ user.name }}</a>
+        <a href="/auth/logout">Logout</a>
+      </div>
+    {% else %}
+      <div style="display:inline-block;">
+        <a href="/auth/login">Login</a>
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}
+
+{% block mid %}
+<div>여기가 미드</div>
+{% endblock %}
+
+{% block bot %}
+<div><h5>(주) 다 팔아다있으</h5></div>
+{% endblock %}
+
+</body>
+</html>

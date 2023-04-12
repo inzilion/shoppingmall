@@ -1,0 +1,21 @@
+{% extends "index.html" %}
+{% block mid %} 
+
+<h3>전체 상품 목록</h3>
+<table>
+  <th>상품이름</th>
+  <th>가격</th>
+  <th>등록일</th>
+  <th>판매자</th>
+  {% for product in products %}
+  <tr>
+    <td>{{ product.name }}</td>
+    <td>{{ product.price }}</td>
+    <td>{{ product.registrationDate }}</td>
+    <td>{{ product.seller }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+
+{% endblock %}

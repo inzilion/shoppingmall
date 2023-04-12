@@ -1,14 +1,11 @@
 const pool = require('./_dbPool');
-const path = require('path');
-
 const getDate = (d) => `${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`;
 const getTime = (d) => `${d.getHours()}-${d.getMinutes()}-${d.getSeconds()}`;
 const getDateTime = (d) => getDate(d) + ' ' + getTime(d);
 
-
 const login = (req, res) => {
   if(req.session.user === undefined)
-    res.sendFile(path.join(__dirname, '../public/login.html'));
+    res.render('login.html');
   else
     res.redirect(`/myPage/${req.session.user.id}`);
 }
@@ -29,7 +26,7 @@ const loginProcess = (req, res)=>{
   })
 }
 
-const join = (req, res) => res.sendFile(path.join(__dirname, '../public/join.html'));
+const join = (req, res) => res.render('join.html');
 
 const joinProcess = (req, res) => {
   let sql = `SELECT id FROM customers WHERE id='${req.body.userID}'`;
@@ -42,9 +39,7 @@ const joinProcess = (req, res) => {
                     getDateTime(new Date()), getDateTime(new Date()), '돌', 0, 0];
       pool.query(sql, values, (err, rows, field)=>{
         if(err) throw err;
-        let template = `<h4>${req.body.userName}님이 등록되었습니다.</h4>`;
-        template += '<a href="/auth/login">Login</a>';
-        res.send(template);
+          res.render("joinProcess.html", {userName : req.body.userName}) 
       })
       // 개인 장바구니 테이블 생성  
     }
