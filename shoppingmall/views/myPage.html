@@ -5,34 +5,13 @@
     <form method="post" action="/myPage/{{user.id}}/edit">
       <h3>{{ user.name }}의 상세정보</h3>
       <table>
-        <tr>
-          <td>아이디</td>
-          <td>{{ user.id }}</td>
-        </tr>
-        <tr>
-          <td>이름</td>
-          <td>{{ user.name }}</td>
-        </tr>
-        <tr>
-          <td>등급</td>
-          <td>{{ user.grade }}</td>
-        </tr>
-        <tr>
-          <td>비밀번호</td>
-          <td><input type="password" value='' name="userPW"></td>
-        </tr>
-        <tr>
-          <td>전화</td>
-          <td><input type="text" value='{{user.phone}}' name="userPhone"></td>
-        </tr>
-        <tr>
-          <td>이메일</td>
-          <td><input type="text" value='{{user.email}}' name="userEmail"></td>
-        </tr>
-        <tr>
-          <td>마지막 접속일</td>
-          <td>{{ user.lastLogin }}</td>
-        </tr>
+        <tr><td>아이디</td><td>{{ user.id }}</td></tr>
+        <tr><td>이름</td><td>{{ user.name }}</td></tr>
+        <tr><td>등급</td><td>{{ user.grade }}</td></tr>
+        <tr><td>비밀번호</td><td><input type="password" value='' name="userPW"></td></tr>
+        <tr><td>전화</td><td><input type="text" value='{{user.phone}}' name="userPhone"></td></tr>
+        <tr><td>이메일</td><td><input type="text" value='{{user.email}}' name="userEmail"></td></tr>
+        <tr><td>마지막 접속일</td><td>{{ user.lastLogin }}</td></tr>
       </table>
       <input type="submit" value="Edit">
     </from>
