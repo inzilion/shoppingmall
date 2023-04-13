@@ -1,0 +1,27 @@
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Log in</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form method="post" action="/auth/loginProcess">
+        <div class="modal-body">
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">ID</span>
+            <input type="text" name="userID" class="form-control" placeholder="ID" aria-label="Username" aria-describedby="basic-addon1">
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">PW</span>
+            <input type="password" name="userPW" class="form-control" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal" onclick="location.href='/auth/join'">Join us</button>
+          <button type="submit" class="btn btn-outline-primary">Log in</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

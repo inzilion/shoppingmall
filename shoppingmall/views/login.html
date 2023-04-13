@@ -1,0 +1,17 @@
+<div class="me-auto mb-2 mb-lg-0 me-2">
+  {% if user %}  
+  <button type="button" class="btn btn-outline-success" onclick="location.href='/myPage/{{ user.id }}'" >
+    {{ user.name }}  
+  </button>
+  <button type="button" class="btn btn-outline-danger" onclick="location.href='/auth/logout'">
+    Logout
+  </button>
+  {% else %}
+  <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#loginModal">
+    Login
+  </button>
+  <button type="button" class="btn btn-outline-primary" onclick="location.href='/auth/join'">
+    Join us
+  </button>
+  {% endif %}
+</div>  

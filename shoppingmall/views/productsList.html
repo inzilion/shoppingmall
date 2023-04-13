@@ -1,8 +1,7 @@
 {% extends "index.html" %}
 {% block mid %} 
 
-<h3>전체 상품 목록</h3>
-<table>
+<table class="table table-striped">
   <th>상품이름</th>
   <th>가격</th>
   <th>등록일</th>
@@ -11,7 +10,7 @@
   <tr>
     <td>{{ product.name }}</td>
     <td>{{ product.price }}</td>
-    <td>{{ product.registrationDate }}</td>
+    <td>{{ product.date }}</td>
     <td>{{ product.seller }}</td>
   </tr>
   {% endfor %}
