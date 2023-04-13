@@ -1,21 +1,28 @@
 {% extends "index.html" %}
 {% block mid %}
-<h2>Join us</h2>
-  <form method="post" action="/auth/JoinProcess">
-    <div style="display:flex; flex-direction: column; padding: 5px;">
-      <div style="display:flex; flex-direction: row; padding:1px;">
-        <div style="width:60px;">ID : </div>
-        <div><input type="text" name="userID" required=""></div>
+
+<div class="card">
+  <div class="card-header">
+    회원가입
+  </div>
+  <div class="card-body">
+    <form method="post" action="/auth/joinProcess" style="width:300px ;">
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">ID</span>
+        <input type="text" name="userID" class="form-control" placeholder="ID" aria-label="Username" aria-describedby="basic-addon1">
       </div>
-      <div style="display:flex; flex-direction: row; padding:1px;">
-        <div style="width:60px;">NAME : </div>
-        <div><input type="text" name="userName" required=""></div>
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Name</span>
+        <input type="text" name="userName" class="form-control" placeholder="Name" aria-label="Username" aria-describedby="basic-addon1">
       </div>
-      <div style="display:flex; flex-direction: row; padding:1px;">
-        <div style="width:60px;">PW : </div>
-        <div><input type="password" name="userPW" required=""></div>
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">PW</span>
+        <input type="password" name="userPW" class="form-control" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1">
       </div>
-    </div>
-    <input style="padding: 3px; margin:5px;" type="submit" value="Join us">
-  </form>
+      <input type="submit" value="회원가입" class="btn btn-outline-primary"></input>
+    </form>
+  </div>
+</div>
+
+
 {% endblock %}
