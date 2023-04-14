@@ -1,0 +1,15 @@
+{% extends "index.html" %}
+
+{% block mid %}
+<div class="card-body">
+  <h4 class="modal-title fs-5">{{ product.name }}의 상세정보</h4>
+    <table class="table table-striped">
+      <tr><td>카테고리</td><td>{{ product.category }}</td></tr>
+      <tr><td>상품명</td><td>{{ product.name }}</td></tr>
+      <tr><td>가격</td><td>{{ product.price }}원</td></tr>
+      <tr><td>등록일</td><td>{{ product.registrationDate }}</td></tr>
+      <tr><td>상품이미지</td><td>{{ product.img }}</td></tr>
+      <tr><td>판매자</td><td>{{ product.seller }}</td></tr>
+    </table>
+</div>
+{% endblock %}

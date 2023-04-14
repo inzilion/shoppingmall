@@ -8,7 +8,7 @@
   <th>판매자</th>
   {% for product in products %}
   <tr>
-    <td>{{ product.name }}</td>
+    <td><a href="/products/{{product.idproducts}}">{{ product.name }}</a></td>
     <td>{{ product.price }}</td>
     <td>{{ product.date }}</td>
     <td>{{ product.seller }}</td>

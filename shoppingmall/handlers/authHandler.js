@@ -50,7 +50,7 @@ const joinProcess = (req, res) => {
 
 const logout = (req, res)=>{ 
   req.session.destroy();
-  res.redirect('/');
+  res.render('message.html', {message : "로그아웃 되었습니다."});
 }
 
 const withdrawal = (req, res)=>{ res.send('회원탈퇴'); }
