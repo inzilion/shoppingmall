@@ -37,22 +37,33 @@ CREATE TABLE category (
   name                VARCHAR(30) NOT NULL,
   PRIMARY KEY(idcategory));
 
-INSERT INTO category (name) VALUES ('전자기기');
-INSERT INTO category (name) VALUES ('식품');
+INSERT INTO category (name) VALUES ('안먹는거');
+INSERT INTO category (name) VALUES ('먹는거');
 
 CREATE TABLE products (
   idproducts          INT NOT NULL AUTO_INCREMENT,
   category            INT NOT NULL,
   name                VARCHAR(30) NOT NULL,
   price               INT NOT NULL,
+  quantity            INT NOT NULL,
   registrationDate    TIMESTAMP NOT NULL,
   img                 VARCHAR(200),
   seller              VARCHAR(20) NOT NULL,
   PRIMARY KEY(idproducts));
 
-INSERT INTO products (category, name, price, registrationDate, seller) 
-      VALUES (1, '아이패드 프로' , 1000000, '2023-04-11 00:00:00', 'tester');
-INSERT INTO products (category, name, price, registrationDate, seller) 
-      VALUES (1, '갤럭시텝 플러스' , 570000, '2023-04-11 00:00:00', 'tester');
-INSERT INTO products (category, name, price, registrationDate, seller) 
-      VALUES (2, '양갈비 1Kg' , 40000, '2023-04-11 00:00:00', 'jwj');
+INSERT INTO products (category, name, price, quantity, registrationDate, seller) 
+      VALUES (1, '아이패드 프로' , 1000000, 100,'2023-04-11 00:00:00', 'tester');
+INSERT INTO products (category, name, price, quantity, registrationDate, seller) 
+      VALUES (1, '갤럭시텝 플러스' , 570000, 90, '2023-04-11 00:00:00', 'tester');
+INSERT INTO products (category, name, price, quantity, registrationDate, seller) 
+      VALUES (2, '양갈비 1Kg' , 40000, 50, '2023-04-11 00:00:00', 'jwj');
+
+CREATE TABLE carts (
+  idcarts             INT NOT NULL AUTO_INCREMENT,
+  customerID          VARCHAR(20) NOT NULL,
+  productID           INT NOT NULL,
+  quantity            INT NOT NULL,
+  PRIMARY KEY(idcarts));
+
+INSERT INTO carts (customerID, productID, quantity) VALUES ('tester', 1, 2);
+INSERT INTO carts (customerID, productID, quantity) VALUES ('tester', 3, 1);

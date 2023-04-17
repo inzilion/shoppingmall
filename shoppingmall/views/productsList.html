@@ -1,15 +1,17 @@
 {% extends "index.html" %}
 {% block mid %} 
 
-<table class="table table-striped">
+<table class="table table-striped text-center">
   <th>상품이름</th>
   <th>가격</th>
+  <th>수량</th>
   <th>등록일</th>
   <th>판매자</th>
   {% for product in products %}
   <tr>
     <td><a href="/products/{{product.idproducts}}">{{ product.name }}</a></td>
-    <td>{{ product.price }}</td>
+    <td class="text-end">{{ product.price }}</td>
+    <td class="text-end">{{ product.quantity }}</td>
     <td>{{ product.date }}</td>
     <td>{{ product.seller }}</td>
   </tr>

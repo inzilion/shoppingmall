@@ -37,10 +37,13 @@ const userEdit = (req, res) => {
 }
 
 const cart = (req, res)=>{
-  let sql = 'SELECT * FROM ?Cart';
+  let sql =  `SELECT * FROM carts A LEFT JOIN products B ON A.productID = B.idproducts 
+        UNION SELECT * FROM carts A RIGHT JOIN products B ON A.productID = B.idproducts 
+        WHERE A.customerID=?`;
   let values = [req.session.user.id];
   pool.query(sql, values, (err, rows, field)=>{
     if(err) throw err;
+    console.log(rows);
     res.render('cart.html', {user : req.session.user, products: rows} )
   })
 }

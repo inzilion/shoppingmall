@@ -4,7 +4,7 @@ const getTime = (d) => `${d.getHours()}-${d.getMinutes()}-${d.getSeconds()}`;
 const getDateTime = (d) => getDate(d) + ' ' + getTime(d);
 
 const list = (req, res)=>{
-  let sql = `SELECT idproducts, name, price, DATE_FORMAT(registrationDate, '%Y-%m-%d') AS date, seller From products`;
+  let sql = `SELECT idproducts, name, price, quantity, DATE_FORMAT(registrationDate, '%Y-%m-%d') AS date, seller From products`;
   pool.query(sql, (err, rows, field)=>{
     res.render('productsList.html', { products: rows, user : req.session.user});
   })  
