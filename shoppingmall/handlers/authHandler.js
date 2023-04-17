@@ -39,9 +39,13 @@ const joinProcess = (req, res) => {
                     getDateTime(new Date()), getDateTime(new Date()), '돌', 0, 0];
       pool.query(sql, values, (err, rows, field)=>{
         if(err) throw err;
-          res.render("joinProcess.html", {userName : req.body.userName}) 
+      // 개인 장바구니 테이블 생성    
+        let sql = 'CREATE TABLE ?Cart ('
+        let values =
+          
+        res.render("joinProcess.html", {userName : req.body.userName}) 
       })
-      // 개인 장바구니 테이블 생성  
+      
     }
     else
       res.redirect('/errors/join');

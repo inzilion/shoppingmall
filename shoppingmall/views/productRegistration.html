@@ -8,8 +8,8 @@
   <div class="card-body">
     <form method="post" action="/products/registrationProcess" style="width:300px ;">
       <div class="input-group mb-3">
-        <select name="productCategory" class="form-select" aria-label="Default select example">
-          <option selected>카테고리</option>
+        <select required name="productCategory" class="form-select" aria-label="Default select example">
+          <option value="" selected>카테고리</option>
           <option value="1">안먹는거</option>
           <option value="2">먹는거</option>
           <option value="3">기타등등</option>
@@ -17,11 +17,11 @@
       </div>
       <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1">상품명</span>
-        <input type="text" name="productName" class="form-control" placeholder="상품명" aria-label="Username" aria-describedby="basic-addon1">
+        <input required type="text" name="productName" class="form-control" placeholder="상품명" aria-label="Username" aria-describedby="basic-addon1">
       </div>
       <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1">가격</span>
-        <input type="text" name="productPrice" class="form-control" placeholder="가격(숫자로입력)" aria-label="Username" aria-describedby="basic-addon1">
+        <input required type="text" name="productPrice" class="form-control" placeholder="가격(숫자로입력)" aria-label="Username" aria-describedby="basic-addon1">
       </div>
       <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1">이미지</span>

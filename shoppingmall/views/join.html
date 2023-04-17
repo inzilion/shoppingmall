@@ -9,15 +9,15 @@
     <form method="post" action="/auth/joinProcess" style="width:300px ;">
       <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1">ID</span>
-        <input type="text" name="userID" class="form-control" placeholder="ID" aria-label="Username" aria-describedby="basic-addon1">
+        <input required type="text" name="userID" class="form-control" placeholder="ID" aria-label="Username" aria-describedby="basic-addon1">
       </div>
       <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1">Name</span>
-        <input type="text" name="userName" class="form-control" placeholder="Name" aria-label="Username" aria-describedby="basic-addon1">
+        <input required type="text" name="userName" class="form-control" placeholder="Name" aria-label="Username" aria-describedby="basic-addon1">
       </div>
       <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1">PW</span>
-        <input type="password" name="userPW" class="form-control" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1">
+        <input required type="password" name="userPW" class="form-control" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1">
       </div>
       <input type="submit" value="회원가입" class="btn btn-outline-primary"></input>
     </form>

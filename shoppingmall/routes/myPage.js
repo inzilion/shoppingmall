@@ -5,6 +5,6 @@ const myPageHandler = require('../handlers/myPageHandler');
 router.use(myPageHandler.index);
 router.get('/:userID', myPageHandler.userID);
 router.post('/:userID/edit', myPageHandler.userEdit);
-router.get('/:userID/cart', (req, res)=>{ res.send(`${req.session.user.name}의 장바구니`)});
+router.get('/:userID/cart', myPageHandler.cart);
 
 module.exports = router;

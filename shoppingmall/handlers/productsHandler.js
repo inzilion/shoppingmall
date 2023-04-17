@@ -41,10 +41,18 @@ const productNum = (req, res)=>{
   })
 }
 
+const productClass = (req, res)=>{
+  let sql = `SELECT idproducts, name, price, DATE_FORMAT(registrationDate, '%Y-%m-%d') AS date, seller From products WHERE category=?`;
+  let values = [req.params.productClass];
+  pool.query(sql, values, (err, rows, field)=>{
+    res.render('productsList.html', { products: rows, user : req.session.user});
+  })    
+}
 
 module.exports =  {
   list,
   registration,
   registrationProcess,
   productNum,
+  productClass,
 }

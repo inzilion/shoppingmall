@@ -4,7 +4,7 @@ const productsHandler = require('../handlers/productsHandler.js');
 
 router.get('/', (req, res)=>{ res.send('상품정보 도메인')});
 router.get('/list', productsHandler.list);
-router.get('/category/:productClass', (req, res)=>{res.send(`카테고리가 ${req.params.productClass} 상품 리스트`)});
+router.get('/category/:productClass', productsHandler.productClass);
 router.get('/event', (req, res)=>{ res.send('행사상품 리스트')});
 router.get('/registration', productsHandler.registration);
 router.post('/registrationProcess', productsHandler.registrationProcess);
