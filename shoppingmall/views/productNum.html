@@ -9,7 +9,7 @@
       <tr><td>상품명</td><td>{{ product.name }}</td></tr>
       <tr><td>가격</td><td>{{ product.price }}원</td></tr>
       <tr><td>등록일</td><td>{{ product.registrationDate }}</td></tr>
-      <tr><td>상품이미지</td><td>{{ product.img }}</td></tr>
+      <tr><td>상품이미지</td><td><img style="width: 100px;" src='/static/{{product.img}}'></td></tr>
       <tr><td>판매자</td><td>{{ product.seller }}</td></tr>
     </table>
     {% if user %}

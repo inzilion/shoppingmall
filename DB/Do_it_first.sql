@@ -65,5 +65,5 @@ CREATE TABLE carts (
   cartsQuantity       INT NOT NULL,
   PRIMARY KEY(idcarts));
 
-INSERT INTO carts (customerID, productID, quantity) VALUES ('tester', 1, 2);
-INSERT INTO carts (customerID, productID, quantity) VALUES ('tester', 3, 1);
+INSERT INTO carts (customerID, productID, cartsQuantity) VALUES ('tester', 1, 2);
+INSERT INTO carts (customerID, productID, cartsQuantity) VALUES ('tester', 3, 1);
