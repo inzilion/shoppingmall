@@ -43,14 +43,34 @@ const cart = (req, res)=>{
   let values = [req.session.user.id];
   pool.query(sql, values, (err, rows, field)=>{
     if(err) throw err;
-    console.log(rows);
     res.render('cart.html', {user : req.session.user, products: rows} )
+  }) 
+}
+
+const cartProcess = (req, res)=>{
+  let sql = "INSERT INTO carts (customerID, productID, cartsQuantity) value (?, ?, ?)";
+  let values = [req.session.user.id, req.body.productID, req.body.quantity];
+  pool.query(sql, values, (err, field)=>{
+    if(err) throw err;
+    res.render('message.html', {message:"장바구니에 추가되었습니다.", user : req.session.user});
   })
 }
+
+const cartDelete = (req, res)=>{
+  let sql = "DELETE FROM carts WHERE idcarts in (?)";
+  let values = [Object.keys(req.body)];
+  pool.query(sql, values, (err, field)=>{
+    if(err) throw err;
+    res.redirect(`/myPage/${req.session.user.id}/cart`);
+  })
+}
+
 
 module.exports = {
   index,
   userID,
   userEdit,
   cart,
+  cartProcess,
+  cartDelete,
 }

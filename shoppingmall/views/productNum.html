@@ -3,6 +3,7 @@
 {% block mid %}
 <div class="card-body">
   <h4 class="modal-title fs-5">{{ product.name }}의 상세정보</h4>
+  <form method="post" action="/myPage/{{user.id}}/cartProcess">
     <table class="table table-striped">
       <tr><td>카테고리</td><td>{{ product.category }}</td></tr>
       <tr><td>상품명</td><td>{{ product.name }}</td></tr>
@@ -11,5 +12,11 @@
       <tr><td>상품이미지</td><td>{{ product.img }}</td></tr>
       <tr><td>판매자</td><td>{{ product.seller }}</td></tr>
     </table>
+    {% if user %}
+    <input type="hidden" name="productID" value="{{product.idproducts}}">
+    <label class="m-2">수량 :</label><input name="quantity" type="number" min="1" value="1">
+    <button type="submit" class ="btn btn-primary">장바구니</button>
+    {% endif %}
+  </form>
 </div>
 {% endblock %}

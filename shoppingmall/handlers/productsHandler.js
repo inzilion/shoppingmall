@@ -21,9 +21,9 @@ const registrationProcess = (req, res)=>{
   if(req.session.user == undefined)
     res.render('message.html', {message : "로그인 하세요"});
   else {
-    let sql = 'INSERT INTO products (category, name, price, registrationDate, img, seller) ';
-        sql += 'VALUES(?, ?, ?, ?, ?, ?)';
-    let values = [req.body.productCategory, req.body.productName, req.body.productPrice,
+    let sql = 'INSERT INTO products (category, name, price, quantity, registrationDate, img, seller) ';
+        sql += 'VALUES(?, ?, ?, ?, ?, ?, ?)';
+    let values = [req.body.productCategory, req.body.productName, req.body.productPrice, req.body.productQuantity,
                   getDateTime(new Date()), req.body.productImg, req.session.user.id];
     pool.query(sql, values, (err, rows, field)=>{
       if(err) throw err;
