@@ -10,16 +10,56 @@
   {% for product in products %}
   <tr>
     <td>
-      <input name="{{product.idcarts}}" class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+      <input name="{{product.idcarts}}" class="check form-check-input" type="checkbox" value="" onclick="btnOnOff(this)">
     </td>
     <td><a href="/products/{{product.idproducts}}">{{ product.name }}</a></td>
-    <td class="text-end">{{ product.price }}</td>
-    <td class="text-end"><input type="number" min="1" value="{{product.cartsQuantity }}"></td>
+    <td class="price text-end">{{ product.price }}</td>
+    <td class="text-end">
+      <input class="quantity" type="number" min="1" value="{{product.cartsQuantity }}" onclick="totalPrice()">
+    </td>
   </tr>
   {% endfor %}
+  <tr>
+    <td></td>
+    <td>주문한 총 금액</td>
+    <td><label id="totalPrice"></label></td>
+  </tr>
 </table>
-<button class="m-3 btn btn-danger">선택 삭제</button>
+<button id='btnDelete' class="m-3 btn btn-danger" disabled="disabled">선택 삭제</button>
 </form>
-<button class="m-3 btn btn-success">선택 주문</button>
+<button id='btnOrder' class="m-3 btn btn-success">선택 주문</button>
+<script>
+  let sum = 0;
+  function btnOnOff(box){
+    if(box.checked)   sum++;
+    else              sum--;
+    
+    if(sum > 0){
+      document.querySelector('#btnDelete').disabled = false;
+      document.querySelector('#btnOrder').disabled = false;
+    } else {
+      document.querySelector('#btnDelete').disabled = true;
+      document.querySelector('#btnOrder').disabled = true;
+    }
+    totalPrice();
+  }
+  
+  const totalPrice = () => {
+    let priceNodes = document.querySelectorAll('.price');
+    let quantNodes = document.querySelectorAll('.quantity');
+    let checkNodes = document.querySelectorAll('.check');
+    
+    let total = 0;
+    
+    for(let i=0; i<priceNodes.length; i++)
+      if(checkNodes[i].checked)
+        total += (parseInt(priceNodes[i].innerHTML) * quantNodes[i].valueAsNumber);
+    
+    document.querySelector('#totalPrice').innerHTML = total;
+  }
+
+  window.addEventListener('DOMContentLoaded', totalPrice);
+
+</script>
 
 {% endblock %}
