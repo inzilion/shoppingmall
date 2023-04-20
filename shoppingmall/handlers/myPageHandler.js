@@ -67,6 +67,7 @@ const cartDelete = (req, res)=>{
 }
 
 const cartOrder = (req, res)=>{
+<<<<<<< HEAD
   pool.query(`SELECT address FROM customers WHERE id='${req.session.user.id}'`, (err, rows, field)=>{
     if(err) throw err;
     const myAddress = rows[0].address;
@@ -90,6 +91,14 @@ const cartOrder = (req, res)=>{
 
 
 
+=======
+  console.log(req.body);
+  
+  res.render('order.html', {user : req.body.user,
+                            products : [{},{},{}], 
+                            address : "가짜주소" ,
+                            totalPrice : "0원입니다." })
+>>>>>>> 443b225ec304de06af390247f199b7c65b1ee4d9
 }
 
 

@@ -26,7 +26,11 @@ CREATE TABLE customers (
   PRIMARY KEY(idcustomers));
 
 INSERT INTO customers (id, name, pw, address, joinDate, lastLogin, grade, loginFailCnt, accountSuspension) 
+<<<<<<< HEAD
       VALUES ('tester', '테스터훈', '1234', '경기도 부천시 상동 부천정보산업고', '2005-07-01 14:44:44', '2023-04-05 14:44:44', '돌', 0, 0);
+=======
+      VALUES ('tester', '테스터훈', '1234', '경기도 부천시 상동 부천정보산업고등학교', '2005-07-01 14:44:44', '2023-04-05 14:44:44', '돌', 0, 0);
+>>>>>>> 443b225ec304de06af390247f199b7c65b1ee4d9
 
 CREATE USER 'shoppingmall'@'%' IDENTIFIED BY '1234';
 
