@@ -18,11 +18,11 @@
       <td>{{ totalPrice }}</td>
     </tr>
   </table>
-  <div>
-    배송지 : {{ address }}
+  <div class="text-center">
+    <div>배송지 : {{ address }}</div>
+    <button class="m-3 btn btn-success">결재</button>
+    <button class="m-3 btn btn-danger">취소</button>
   </div>
-  <button class="m-3 btn btn-success">결재</button>
-  <button class="m-3 btn btn-danger">취소</button>
 </form>
 
 {% endblock %}

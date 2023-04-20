@@ -25,8 +25,8 @@ CREATE TABLE customers (
   accountSuspension   BOOLEAN NOT NULL,
   PRIMARY KEY(idcustomers));
 
-INSERT INTO customers (id, name, pw, joinDate, lastLogin, grade, loginFailCnt, accountSuspension) 
-      VALUES ('tester', '테스터훈', '1234', '2005-07-01 14:44:44', '2023-04-05 14:44:44', '돌', 0, 0);
+INSERT INTO customers (id, name, pw, address, joinDate, lastLogin, grade, loginFailCnt, accountSuspension) 
+      VALUES ('tester', '테스터훈', '1234', '경기도 부천시 상동 부천정보산업고', '2005-07-01 14:44:44', '2023-04-05 14:44:44', '돌', 0, 0);
 
 CREATE USER 'shoppingmall'@'%' IDENTIFIED BY '1234';
 

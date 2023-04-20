@@ -67,13 +67,29 @@ const cartDelete = (req, res)=>{
 }
 
 const cartOrder = (req, res)=>{
-  console.log(req.body);
+  pool.query(`SELECT address FROM customers WHERE id='${req.session.user.id}'`, (err, rows, field)=>{
+    if(err) throw err;
+    const myAddress = rows[0].address;
+
+    let sql =  `SELECT idcarts, name, price FROM carts A LEFT JOIN products B ON A.productID = B.idproducts WHERE idcarts in (?)
+          UNION SELECT idcarts, name, price FROM carts A RIGHT JOIN products B ON A.productID = B.idproducts WHERE idcarts in (?)`
+
+    let cartIds = Object.keys(req.body);
+    cartIds = cartIds.slice(0, cartIds.length/2);
+    let values = [cartIds, cartIds];
+    pool.query(sql, values, (err, rows, field)=>{
+      if (err) throw err;
+      rows.map(row =>row.quantity = req.body['qty'+ row.idcarts]);
+      res.render('order.html', {user : req.session.user,
+        products : rows, 
+        address : myAddress ,
+        totalPrice : rows.reduce((sum, row)=>{return sum+=(row.price * row.quantity)}, 0)
+      })
+    })
+  })
 
 
-  res.render('order.html', {user : req.body.user,
-                            products : [{},{},{}], 
-                            address : "가짜주소" ,
-                            totalPrice : "0원입니다." })
+
 }
 
 
