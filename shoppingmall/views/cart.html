@@ -1,38 +1,57 @@
 {% extends "index.html" %}
 {% block mid %} 
 
-<form method="post" action="/myPage/{{user.id}}/cartDelete">
-<table class="table table-striped text-center">
-  <th>선택</th>
-  <th>상품이름</th>
-  <th>가격</th>
-  <th>수량</th>
-  {% for product in products %}
-  <tr>
-    <td>
-      <input name="{{product.idcarts}}" class="check form-check-input" type="checkbox" value="" onclick="btnOnOff(this)">
-    </td>
-    <td><a href="/products/{{product.idproducts}}">{{ product.name }}</a></td>
-    <td class="price text-end">{{ product.price }}</td>
-    <td class="text-end">
-      <input class="quantity" type="number" min="1" value="{{product.cartsQuantity }}" onclick="totalPrice()">
-    </td>
-  </tr>
-  {% endfor %}
-  <tr>
-    <td></td>
-    <td>주문한 총 금액</td>
-    <td><label id="totalPrice"></label></td>
-  </tr>
-</table>
-<button id='btnDelete' class="m-3 btn btn-danger" disabled="disabled">선택 삭제</button>
+<form id="cartForm" method="post">
+  <table class="table table-striped text-center">
+    <th>선택</th>
+    <th>상품이름</th>
+    <th>가격</th>
+    <th>수량</th>
+    {% for product in products %}
+    <tr>
+      <td>
+        <input name="{{product.idcarts}}" class="check form-check-input" type="checkbox" value="" onclick="btnOnOff(this)">
+      </td>
+      <td><a href="/products/{{product.idproducts}}">{{ product.name }}</a></td>
+      <td class="price text-end">{{ product.price }}</td>
+      <td class="text-end">
+        <input id="qty{{product.idcarts}}" class="quantity" type="number" min="1" value="{{product.cartsQuantity }}" onclick="totalPrice()">
+      </td>
+    </tr>
+    {% endfor %}
+    <tr>
+      <td></td>
+      <td>주문한 총 금액</td>
+      <td><label id="totalPrice"></label></td>
+    </tr>
+  </table>
+  <button id='btnDelete' class="m-3 btn btn-danger" disabled onclick="del()">선택 삭제</button>
+  <button id='btnOrder' class="m-3 btn btn-success" disabled onclick="order()">선택 주문</button>
 </form>
-<button id='btnOrder' class="m-3 btn btn-success">선택 주문</button>
 <script>
+  const cartForm = document.querySelector('#cartForm');
+  
+  const del = () => {
+    cartForm.action = "/myPage/{{user.id}}/cartDelete";
+  }
+
+  const order = () => {
+    cartForm.action = "/myPage/{{user.id}}/cartOrder";
+  }
+
+  
+  
   let sum = 0;
   function btnOnOff(box){
-    if(box.checked)   sum++;
-    else              sum--;
+    const qty = document.querySelector(`#qty${box.name}`);
+    
+    if(box.checked) {
+      sum++;
+      qty.name = `qty${box.name}`;
+    } else {
+      sum--;
+      qty.name = '';
+    } 
     
     if(sum > 0){
       document.querySelector('#btnDelete').disabled = false;

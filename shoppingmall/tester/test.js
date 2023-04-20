@@ -1,17 +1,7 @@
-items = [1, 3, 5];
+obj = { '18': '', '19': '', qty18: '6', qty19: '7' };
 
-//위에 배열에 각 요소의 2배값 중에서 5 이상되는 값들의 합을 구하시오.
+objArr = Object.keys(obj).slice(0,2);
+console.log(objArr);
 
-console.log(items.map(i=>i*2).filter(i=>i>=5).reduce((s,i)=>s+=i));
-
-// newItems = items.map(item => item + 1);
-// console.log(items, newItems);
-
-// newItems = items.filter(item => item < 5);
-// console.log(items, newItems);
-
-// newItems = items.reduce((a, b) => a += b );
-// console.log(items, newItems);
-
-
+objArr.map(num=>console.log(obj['qty'+ num]));
 

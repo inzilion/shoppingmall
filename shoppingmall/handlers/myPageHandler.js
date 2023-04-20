@@ -58,11 +58,22 @@ const cartProcess = (req, res)=>{
 
 const cartDelete = (req, res)=>{
   let sql = "DELETE FROM carts WHERE idcarts in (?)";
-  let values = [Object.keys(req.body)];
+  let values = Object.keys(req.body);
+  values = [values.slice(0, values.length/2)];
   pool.query(sql, values, (err, field)=>{
     if(err) throw err;
     res.redirect(`/myPage/${req.session.user.id}/cart`);
   })
+}
+
+const cartOrder = (req, res)=>{
+  console.log(req.body);
+
+
+  res.render('order.html', {user : req.body.user,
+                            products : [{},{},{}], 
+                            address : "가짜주소" ,
+                            totalPrice : "0원입니다." })
 }
 
 
@@ -73,4 +84,5 @@ module.exports = {
   cart,
   cartProcess,
   cartDelete,
+  cartOrder, 
 }

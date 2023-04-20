@@ -8,5 +8,6 @@ router.post('/:userID/edit', myPageHandler.userEdit);
 router.get('/:userID/cart', myPageHandler.cart);
 router.post('/:userID/cartProcess', myPageHandler.cartProcess);
 router.post('/:userID/cartDelete', myPageHandler.cartDelete);
+router.post('/:userID/cartOrder', myPageHandler.cartOrder);
 
 module.exports = router;
