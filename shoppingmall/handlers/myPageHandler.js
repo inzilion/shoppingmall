@@ -68,8 +68,7 @@ const cartDelete = (req, res)=>{
 
 const cartOrder = (req, res)=>{
   console.log(req.body);
-
-
+  
   res.render('order.html', {user : req.body.user,
                             products : [{},{},{}], 
                             address : "가짜주소" ,
