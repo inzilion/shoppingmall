@@ -15,7 +15,7 @@
       <td><a href="/products/{{product.idproducts}}">{{ product.name }}</a></td>
       <td class="price text-end">{{ product.price }}</td>
       <td class="text-end">
-        <input id="qty{{product.idcarts}}" class="quantity" type="number" min="1" value="{{product.cartsQuantity }}" onclick="totalPrice()">
+        <input id="qty{{product.idcarts}}" class="quantity" type="number" min="1" max="{{product.quantity}}" value="{{product.cartsQuantity }}" onclick="totalPrice()">
       </td>
     </tr>
     {% endfor %}

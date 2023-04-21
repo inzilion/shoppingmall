@@ -1,7 +1,7 @@
 {% extends "index.html" %}
 {% block mid %} 
 
-<form id="cartForm" method="post">
+<form id="orderForm" method="post">
   <table class="table table-striped text-center">
     <th>상품이름</th>
     <th>가격</th>
@@ -10,7 +10,7 @@
     <tr>
       <td><a href="/products/{{product.idproducts}}">{{ product.name }}</a></td>
       <td class="price text-end">{{ product.price }}</td>
-      <td class="text-end"> {{ product.quantity}}      </td>
+      <td class="text-end"> {{ product.cartQuantity}}      </td>
     </tr>
     {% endfor %}
     <tr>
@@ -20,9 +20,22 @@
   </table>
   <div class="text-center">
     <div>배송지 : {{ address }}</div>
-    <button class="m-3 btn btn-success">결재</button>
-    <button class="m-3 btn btn-danger">취소</button>
+    <button class="m-3 btn btn-success" onclick="payment()">결재</button>
+    <button class="m-3 btn btn-danger" onclick="cancel()">취소</button>
   </div>
 </form>
+<script>
+  const form = document.querySelector('#orderForm');
+
+  const payment = () => {
+    form.action = "/myPage/{{user.id}}/cartPayment";
+  }
+
+  const cancel = () => {
+    form.action = "/myPage/{{user.id}}/cart";
+  }
+
+
+</script>
 
 {% endblock %}

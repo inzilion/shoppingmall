@@ -67,39 +67,42 @@ const cartDelete = (req, res)=>{
 }
 
 const cartOrder = (req, res)=>{
-<<<<<<< HEAD
   pool.query(`SELECT address FROM customers WHERE id='${req.session.user.id}'`, (err, rows, field)=>{
     if(err) throw err;
     const myAddress = rows[0].address;
 
-    let sql =  `SELECT idcarts, name, price FROM carts A LEFT JOIN products B ON A.productID = B.idproducts WHERE idcarts in (?)
-          UNION SELECT idcarts, name, price FROM carts A RIGHT JOIN products B ON A.productID = B.idproducts WHERE idcarts in (?)`
+    let sql =  `SELECT idcarts, idproducts, name, price, quantity FROM carts A LEFT JOIN products B ON A.productID = B.idproducts WHERE idcarts in (?)
+          UNION SELECT idcarts, idproducts, name, price, quantity FROM carts A RIGHT JOIN products B ON A.productID = B.idproducts WHERE idcarts in (?)`
 
     let cartIds = Object.keys(req.body);
     cartIds = cartIds.slice(0, cartIds.length/2);
     let values = [cartIds, cartIds];
     pool.query(sql, values, (err, rows, field)=>{
       if (err) throw err;
-      rows.map(row =>row.quantity = req.body['qty'+ row.idcarts]);
+      rows.map(row =>row.cartQuantity = req.body['qty'+ row.idcarts]);
+      req.session.user.order = rows;
       res.render('order.html', {user : req.session.user,
         products : rows, 
         address : myAddress ,
-        totalPrice : rows.reduce((sum, row)=>{return sum+=(row.price * row.quantity)}, 0)
+        totalPrice : rows.reduce((sum, row)=>{return sum+=(row.price * row.cartQuantity)}, 0)
       })
     })
   })
-
-
-
-=======
-  console.log(req.body);
-  
-  res.render('order.html', {user : req.body.user,
-                            products : [{},{},{}], 
-                            address : "가짜주소" ,
-                            totalPrice : "0원입니다." })
->>>>>>> 443b225ec304de06af390247f199b7c65b1ee4d9
 }
+
+const cartPayment = (req, res)=>{
+  req.session.user.order.map(row =>{
+    pool.query(`DELETE FROM carts WHERE idcarts=${row.idcarts}`, (err, field)=>{
+      if(err) throw err;
+      let sql = `UPDATE products SET quantity=${row.quantity-row.cartQuantity} WHERE idproducts=${row.idproducts}`
+      pool.query(sql, (err, field)=>{
+        if(err) throw err;
+      })
+    })
+  })
+  res.render('message.html', {message : '결재가 완료되었습니다.', user : req.session.user});
+}
+
 
 
 module.exports = {
@@ -109,5 +112,6 @@ module.exports = {
   cart,
   cartProcess,
   cartDelete,
-  cartOrder, 
+  cartOrder,
+  cartPayment, 
 }
